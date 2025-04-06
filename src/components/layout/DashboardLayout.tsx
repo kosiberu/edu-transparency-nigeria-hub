@@ -15,7 +15,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [collapsed, setCollapsed] = useState(isMobile);
 
   return (
-    <SidebarProvider defaultCollapsed={isMobile}>
+    <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <DashboardSidebar />
         <main className="flex-1 overflow-auto">
@@ -34,7 +34,7 @@ function DashboardHeader() {
     <header className="border-b bg-white py-3 px-5 flex items-center justify-between sticky top-0 z-10">
       <div className="flex items-center gap-2">
         <SidebarTrigger asChild>
-          <Button variant="ghost" size="icon" className="md:hidden">
+          <Button variant="ghost" size="icon">
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
