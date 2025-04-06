@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { DataCard, StatCard } from "@/components/ui/data-card";
@@ -217,80 +218,81 @@ const Index = () => {
                     updated quarterly or as new information becomes available.
                   </p>
                   
-                  <CollapsibleTrigger 
-                    onClick={() => setIsAboutExpanded(!isAboutExpanded)}
-                    className="text-nigeria-green flex items-center hover:underline cursor-pointer"
-                  >
-                    <span>{isAboutExpanded ? "Show less" : "Learn more about this data"}</span>
-                    <Info className="h-4 w-4 ml-1" />
-                  </CollapsibleTrigger>
+                  {/* Fix: Wrap the CollapsibleTrigger and CollapsibleContent within a Collapsible component */}
+                  <Collapsible open={isAboutExpanded}>
+                    <CollapsibleTrigger 
+                      onClick={() => setIsAboutExpanded(!isAboutExpanded)}
+                      className="text-nigeria-green flex items-center hover:underline cursor-pointer"
+                    >
+                      <span>{isAboutExpanded ? "Show less" : "Learn more about this data"}</span>
+                      <Info className="h-4 w-4 ml-1" />
+                    </CollapsibleTrigger>
+                    
+                    <CollapsibleContent className="pl-14 text-sm space-y-4 mt-2">
+                      <div>
+                        <h4 className="font-medium mb-1">Data Accuracy and Verification</h4>
+                        <p className="text-muted-foreground">
+                          All financial data presented in this dashboard is extracted from the institution's
+                          audited financial reports, verified by the Office of the Bursar, and approved by
+                          the institution's Governing Council. Student population figures are collected from
+                          the Academic Planning Unit and verified by the Registrar's Office.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-medium mb-1">Data Collection Timeline</h4>
+                        <p className="text-muted-foreground">
+                          Financial data is updated quarterly, with annual figures finalized after the end of 
+                          each fiscal year. Student population figures are updated at the beginning of each 
+                          academic session, with adjustments made after the add/drop period.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-medium mb-1">Data Categories Explained</h4>
+                        <ul className="list-disc pl-5 text-muted-foreground space-y-2">
+                          <li><span className="font-medium text-gray-700">Annual Budget:</span> Total financial allocations from the Federal Government, broken down by personnel, overhead, and capital expenditure.</li>
+                          <li><span className="font-medium text-gray-700">Research Grants:</span> Funds secured specifically for research activities, separated by domestic and international sources.</li>
+                          <li><span className="font-medium text-gray-700">TETFund Allocation:</span> Interventions received from the Tertiary Education Trust Fund for various projects and academic support.</li>
+                          <li><span className="font-medium text-gray-700">Endowment Fund:</span> Cumulative donations, investments, and returns managed by the institution for long-term financial stability.</li>
+                          <li><span className="font-medium text-gray-700">Student Population:</span> Total enrolled students, categorized by level of study.</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-medium mb-1">Use of This Information</h4>
+                        <p className="text-muted-foreground">
+                          This dashboard is provided for transparency purposes as mandated by the Federal Ministry of Education. 
+                          The information may be used for research, analysis, and public information purposes. 
+                          For permission to reproduce or distribute this information, please contact the institution's 
+                          Public Relations Office.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-medium mb-1">Related Resources</h4>
+                        <div className="flex flex-col gap-2">
+                          <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
+                            <FileText className="h-4 w-4 mr-1" />
+                            Annual Financial Report (2025)
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                          <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
+                            <FileText className="h-4 w-4 mr-1" />
+                            Academic Planning Report (2024/2025)
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                          <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
+                            <FileText className="h-4 w-4 mr-1" />
+                            Federal Education Transparency Initiative
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </div>
               </div>
-              
-              <Collapsible open={isAboutExpanded}>
-                <CollapsibleContent className="pl-14 text-sm space-y-4 mt-2">
-                  <div>
-                    <h4 className="font-medium mb-1">Data Accuracy and Verification</h4>
-                    <p className="text-muted-foreground">
-                      All financial data presented in this dashboard is extracted from the institution's
-                      audited financial reports, verified by the Office of the Bursar, and approved by
-                      the institution's Governing Council. Student population figures are collected from
-                      the Academic Planning Unit and verified by the Registrar's Office.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium mb-1">Data Collection Timeline</h4>
-                    <p className="text-muted-foreground">
-                      Financial data is updated quarterly, with annual figures finalized after the end of 
-                      each fiscal year. Student population figures are updated at the beginning of each 
-                      academic session, with adjustments made after the add/drop period.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium mb-1">Data Categories Explained</h4>
-                    <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                      <li><span className="font-medium text-gray-700">Annual Budget:</span> Total financial allocations from the Federal Government, broken down by personnel, overhead, and capital expenditure.</li>
-                      <li><span className="font-medium text-gray-700">Research Grants:</span> Funds secured specifically for research activities, separated by domestic and international sources.</li>
-                      <li><span className="font-medium text-gray-700">TETFund Allocation:</span> Interventions received from the Tertiary Education Trust Fund for various projects and academic support.</li>
-                      <li><span className="font-medium text-gray-700">Endowment Fund:</span> Cumulative donations, investments, and returns managed by the institution for long-term financial stability.</li>
-                      <li><span className="font-medium text-gray-700">Student Population:</span> Total enrolled students, categorized by level of study.</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium mb-1">Use of This Information</h4>
-                    <p className="text-muted-foreground">
-                      This dashboard is provided for transparency purposes as mandated by the Federal Ministry of Education. 
-                      The information may be used for research, analysis, and public information purposes. 
-                      For permission to reproduce or distribute this information, please contact the institution's 
-                      Public Relations Office.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium mb-1">Related Resources</h4>
-                    <div className="flex flex-col gap-2">
-                      <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
-                        <FileText className="h-4 w-4 mr-1" />
-                        Annual Financial Report (2025)
-                        <ExternalLink className="h-3 w-3 ml-1" />
-                      </a>
-                      <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
-                        <FileText className="h-4 w-4 mr-1" />
-                        Academic Planning Report (2024/2025)
-                        <ExternalLink className="h-3 w-3 ml-1" />
-                      </a>
-                      <a href="#" className="text-nigeria-green hover:underline inline-flex items-center">
-                        <FileText className="h-4 w-4 mr-1" />
-                        Federal Education Transparency Initiative
-                        <ExternalLink className="h-3 w-3 ml-1" />
-                      </a>
-                    </div>
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
             </div>
           </DataCard>
         </div>
