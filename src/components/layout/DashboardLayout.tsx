@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Sidebar, SidebarContent, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { MoveRight, Menu } from "lucide-react";
+import { MoveRight, Menu, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -20,7 +20,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <DashboardSidebar />
         <main className="flex-1 overflow-auto">
           <DashboardHeader />
-          <div className="dashboard-content">
+          <div className="dashboard-content p-4 md:p-6">
             {children}
           </div>
         </main>
@@ -54,6 +54,13 @@ function DashboardHeader() {
 }
 
 function DashboardSidebar() {
+  // Financial data to match dashboard
+  const budgetTotal = "₦1,000,000,000";
+  const researchGrantTotal = "₦345,000,000";
+  const tetFundTotal = "₦580,000,000";
+  const studentTotal = "20,000";
+  const endowmentTotal = "₦1,000,000,000";
+
   return (
     <Sidebar className="border-r">
       <SidebarContent>
@@ -79,16 +86,28 @@ function DashboardSidebar() {
             <div className="px-3 py-2">
               <h3 className="text-xs font-medium text-muted-foreground mb-2 px-4">REPORTS</h3>
             </div>
-            <SidebarNavItem href="/budget">Annual Budget Allocation</SidebarNavItem>
-            <SidebarNavItem href="/research-grants">Research Grant Revenue</SidebarNavItem>
-            <SidebarNavItem href="/tetfund">TETFund Allocation</SidebarNavItem>
-            <SidebarNavItem href="/endowment">Endowment Fund</SidebarNavItem>
-            <SidebarNavItem href="/student-population">Student Population</SidebarNavItem>
+            <SidebarNavItem href="/budget" figure={budgetTotal}>
+              Annual Budget Allocation
+            </SidebarNavItem>
+            <SidebarNavItem href="/research-grants" figure={researchGrantTotal}>
+              Research Grant Revenue
+            </SidebarNavItem>
+            <SidebarNavItem href="/tetfund" figure={tetFundTotal}>
+              TETFund Allocation
+            </SidebarNavItem>
+            <SidebarNavItem href="/endowment" figure={endowmentTotal}>
+              Endowment Fund
+            </SidebarNavItem>
+            <SidebarNavItem href="/student-population" figure={studentTotal}>
+              Student Population
+            </SidebarNavItem>
             
             <div className="px-3 py-2">
               <h3 className="text-xs font-medium text-muted-foreground mb-2 px-4">OTHER</h3>
             </div>
-            <SidebarNavItem href="/about">About This Data</SidebarNavItem>
+            <SidebarNavItem href="/about">
+              About This Data
+            </SidebarNavItem>
           </nav>
 
           <div className="p-4 border-t">
@@ -113,20 +132,29 @@ interface SidebarNavItemProps {
   children: React.ReactNode;
   href: string;
   active?: boolean;
+  figure?: string;
 }
 
-function SidebarNavItem({ children, href, active = false }: SidebarNavItemProps) {
+function SidebarNavItem({ children, href, active = false, figure }: SidebarNavItemProps) {
   return (
     <a 
       href={href}
       className={cn(
-        "flex items-center px-4 py-2 mx-3 text-sm rounded-md transition-colors",
+        "flex items-center justify-between px-4 py-2 mx-3 text-sm rounded-md transition-colors",
         active 
           ? "bg-nigeria-green text-white font-medium" 
           : "text-foreground hover:bg-muted"
       )}
     >
-      {children}
+      <span>{children}</span>
+      {figure && (
+        <span className={cn(
+          "text-xs font-medium",
+          active ? "text-white/90" : "text-muted-foreground"
+        )}>
+          {figure}
+        </span>
+      )}
     </a>
   );
 }
