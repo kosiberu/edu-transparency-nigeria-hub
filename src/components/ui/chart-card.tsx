@@ -37,7 +37,17 @@ export function ChartCard({ title, description, children, updatedAt, className, 
   );
 }
 
-export function SimplePieChart({ data, colors }: { data: { name: string; value: number }[], colors: string[] }) {
+export function SimplePieChart({ 
+  data, 
+  dataKey = "value", 
+  nameKey = "name", 
+  colors 
+}: { 
+  data: { name: string; value: number }[]; 
+  dataKey?: string; 
+  nameKey?: string;
+  colors: string[] 
+}) {
   return (
     <ResponsiveContainer width="100%" height={240}>
       <PieChart>
@@ -48,7 +58,8 @@ export function SimplePieChart({ data, colors }: { data: { name: string; value: 
           labelLine={false}
           outerRadius={80}
           fill="#8884d8"
-          dataKey="value"
+          dataKey={dataKey}
+          nameKey={nameKey}
           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
         >
           {data.map((entry, index) => (
