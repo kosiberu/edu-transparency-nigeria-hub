@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Google, Mail } from "lucide-react";
+import { Mail, Globe } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ const Login = () => {
           onClick={handleGoogleLogin}
           disabled={isLoading}
         >
-          <Google className="h-4 w-4" />
+          <Globe className="h-4 w-4" />
           Continue with Google
         </Button>
         
