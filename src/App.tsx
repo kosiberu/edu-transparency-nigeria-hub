@@ -14,6 +14,14 @@ import AdminReports from "./pages/admin/AdminReports";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminSettings from "./pages/admin/AdminSettings";
 
+// Import the report pages
+import BudgetReport from "./pages/reports/BudgetReport";
+import ResearchGrants from "./pages/reports/ResearchGrants";
+import TetFund from "./pages/reports/TetFund";
+import EndowmentFund from "./pages/reports/EndowmentFund";
+import StudentPopulation from "./pages/reports/StudentPopulation";
+import AboutData from "./pages/reports/AboutData";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,6 +32,16 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          
+          {/* Report Routes */}
+          <Route path="/budget" element={<BudgetReport />} />
+          <Route path="/research-grants" element={<ResearchGrants />} />
+          <Route path="/tetfund" element={<TetFund />} />
+          <Route path="/endowment" element={<EndowmentFund />} />
+          <Route path="/student-population" element={<StudentPopulation />} />
+          <Route path="/about" element={<AboutData />} />
+          
+          {/* Admin Routes */}
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/users" element={<AdminUsers />} />
@@ -31,6 +49,7 @@ const App = () => (
           <Route path="/admin/reports" element={<AdminReports />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="/admin/settings" element={<AdminSettings />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
