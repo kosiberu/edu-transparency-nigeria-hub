@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarContent, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { MoveRight, Menu, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,14 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const isMobile = useIsMobile();
-  const [collapsed, setCollapsed] = useState(isMobile);
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Set collapsed state based on mobile detection when component mounts
+  useEffect(() => {
+    if (isMobile !== undefined) {
+      setCollapsed(isMobile);
+    }
+  }, [isMobile]);
 
   return (
     <SidebarProvider>
