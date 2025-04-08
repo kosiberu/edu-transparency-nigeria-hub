@@ -4,6 +4,7 @@ import { MoveRight, Menu, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { AuthenticatedHeader } from "./AuthenticatedHeader";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -25,37 +26,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="min-h-screen flex w-full bg-slate-50">
         <DashboardSidebar />
         <main className="flex-1 overflow-auto">
-          <DashboardHeader />
+          <AuthenticatedHeader />
           <div className="dashboard-content p-4 md:p-6">
             {children}
           </div>
         </main>
       </div>
     </SidebarProvider>
-  );
-}
-
-function DashboardHeader() {
-  return (
-    <header className="border-b bg-white py-3 px-5 flex items-center justify-between sticky top-0 z-10">
-      <div className="flex items-center gap-2">
-        <SidebarTrigger>
-          <Button variant="ghost" size="icon">
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-        </SidebarTrigger>
-        <div className="md:hidden text-sm font-montserrat font-medium">EDU Transparency Hub</div>
-      </div>
-      <div className="flex items-center gap-4">
-        <Button variant="outline" size="sm" className="hidden sm:flex">
-          <MoveRight className="mr-2 h-4 w-4" />
-          Embed Dashboard
-        </Button>
-        <Button variant="outline" size="sm">Download PDF</Button>
-        <Button size="sm" className="bg-nigeria-green hover:bg-nigeria-darkGreen">Login</Button>
-      </div>
-    </header>
   );
 }
 
